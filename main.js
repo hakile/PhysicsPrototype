@@ -1,6 +1,8 @@
 let speeed = 250;
 let d_scale = 1;
 let diff_text = ["Easy", "Normal", "Hard", "Insane", "Ultra", "Extreme", "Nightmare", "Impossible"];
+let first_time = true;
+let highscores = [0,0,0,0];
 
 const game = new Phaser.Game({
     type: Phaser.WEBGL,
@@ -13,6 +15,5 @@ const game = new Phaser.Game({
             gravity: {x: 0, y: 0}
         }
     },
-    // scene: [ Preload, MainMenu, Level1, Level2, Level3, Summary ]
-    scene: [ Level1 ]
+    scene: [ Preload, Level1, Summary, Menu ]
 });
