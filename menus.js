@@ -64,7 +64,7 @@ class Summary extends Phaser.Scene {
         
         // alternate summary screen modifications
         if (this.endless) {
-            lvlcomp.setText('FINISH!'); lvlnum.setText(`Levels completed: ${this.level * d_scale - 1}`); this.curr_lvl = 3;
+            lvlcomp.setText('FINISH!'); lvlnum.setText(`Levels completed: ${this.curr_lvl + 3 * (d_scale - 1)}`); this.curr_lvl = 3;
             lvltime.setText(`Time survived: ${this.time_summary.toFixed(3)}s`)};
         if (this.endless || this.level == 3) {this.lvlbutton.x = -2560; this.menubutton.x = 640; this.menubutton.setOrigin(.5)};
     }
