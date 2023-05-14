@@ -19,8 +19,9 @@ class Summary extends Phaser.Scene {
         this.add_inc = 1;
         this.score_fin = false;
         this.curr_lvl = this.level - 1;
+        let lnames = ['level1', 'level2', 'level3', ''];
         
-        this.cameras.main.setBackgroundColor('#EFEFEF');
+        this.cameras.main.setBackgroundColor('#FFF');
         
         // end-of-level text
         let lvlcomp = this.add.text(640, 360, 'LEVEL COMPLETE!', {font: `bold 75px Times New Roman`, color: '#000'})
@@ -52,20 +53,20 @@ class Summary extends Phaser.Scene {
         this.lvlbutton = this.add.text(590, 880, `Next Level`, {font: `bold 35px Arial`, color: `#000`}).setOrigin(1,.5).setInteractive()
             .on('pointerover', () => this.lvlbutton.setColor(`#808080`))
             .on('pointerout', () => this.lvlbutton.setColor(`#000`))
-            .on('pointerdown', () => {this.cameras.main.fade(750, 239,239,239);
-                this.time.delayedCall(750, () => this.scene.start('level1', {sped: speeed, d_scale: d_scale,
+            .on('pointerdown', () => {this.cameras.main.fade(750, 255,255,255);
+                this.time.delayedCall(750, () => this.scene.start(lnames[this.level], {sped: speeed, d_scale: d_scale,
                     score: 0, endless: false, first_attempt: true}))});
         this.menubutton = this.add.text(690, 880, `Main Menu`, {font: `bold 35px Arial`, color: `#000`}).setOrigin(0,.5).setInteractive()
             .on('pointerover', () => this.menubutton.setColor(`#808080`))
             .on('pointerout', () => this.menubutton.setColor(`#000`))
-            .on('pointerdown', () => {this.cameras.main.fade(750, 239,239,239);
+            .on('pointerdown', () => {this.cameras.main.fade(750, 255,255,255);
                 this.time.delayedCall(750, () => this.scene.start('menu'))});
         
-        // endless
+        // alternate summary screen modifications
         if (this.endless) {
-            this.lvlbutton.x = -2560; this.menubutton.x = 640; this.menubutton.setOrigin(.5);
-            lvlcomp.setText('FINISH!'); lvlnum.setText(`Levels completed: ${this.level * d_scale - 1}`); this.curr_lvl = 3
+            lvlcomp.setText('FINISH!'); lvlnum.setText(`Levels completed: ${this.level * d_scale - 1}`); this.curr_lvl = 3;
             lvltime.setText(`Time survived: ${this.time_summary.toFixed(3)}s`)};
+        if (this.endless || this.level == 3) {this.lvlbutton.x = -2560; this.menubutton.x = 640; this.menubutton.setOrigin(.5)};
     }
 
     update() {
@@ -97,8 +98,8 @@ class Menu extends Phaser.Scene {
 
     create() {
         // title
-        this.cameras.main.setBackgroundColor('#EFEFEF');
-        this.cameras.main.fadeIn(750, 239,239,239);
+        this.cameras.main.setBackgroundColor('#FFF');
+        this.cameras.main.fadeIn(750, 255,255,255);
 
         let titletext = this.add.text(640, 360, `WEAVE`, {font: `bold 150px Times New Roman`, color: '#000'}).setOrigin(.5);
         let tostart = this.add.text(640, 465, `Click anywhere to start`, {font: `30px Verdana`, color: '#808080'}).setOrigin(.5);
@@ -111,25 +112,25 @@ class Menu extends Phaser.Scene {
         let ezmode = this.add.text(640, 825, `Easy Mode`, {font: `bold 35px Arial`, color: `#000`}).setOrigin(.5).setInteractive()
             .on('pointerover', () => ezmode.setColor(`#808080`))
             .on('pointerout', () => ezmode.setColor(`#000`))
-            .on('pointerdown', () => {this.cameras.main.fade(750, 239,239,239);
+            .on('pointerdown', () => {this.cameras.main.fade(750, 255,255,255);
                 this.time.delayedCall(750, () => this.scene.start('level1', {sped: 250, d_scale: 1,
                     score: 0, time_endless: 0, endless: false, first_attempt: true}))});
         let nmode = this.add.text(640, 900, `Normal Mode`, {font: `bold 35px Arial`, color: `#000`}).setOrigin(.5).setInteractive()
             .on('pointerover', () => nmode.setColor(`#808080`))
             .on('pointerout', () => nmode.setColor(`#000`))
-            .on('pointerdown', () => {this.cameras.main.fade(750, 239,239,239);
+            .on('pointerdown', () => {this.cameras.main.fade(750, 255,255,255);
                 this.time.delayedCall(750, () => this.scene.start('level1', {sped: 300, d_scale: 2,
                     score: 0, time_endless: 0, endless: false, first_attempt: true}))});
         let hmode = this.add.text(640, 975, `Hard Mode`, {font: `bold 35px Arial`, color: `#000`}).setOrigin(.5).setInteractive()
             .on('pointerover', () => hmode.setColor(`#808080`))
             .on('pointerout', () => hmode.setColor(`#000`))
-            .on('pointerdown', () => {this.cameras.main.fade(750, 239,239,239);
+            .on('pointerdown', () => {this.cameras.main.fade(750, 255,255,255);
                 this.time.delayedCall(750, () => this.scene.start('level1', {sped: 360, d_scale: 3,
                     score: 0, time_endless: 0, endless: false, first_attempt: true}))});
         let amode = this.add.text(640, 1050, `Arcade Mode`, {font: `bold 35px Arial`, color: `#000`}).setOrigin(.5).setInteractive()
             .on('pointerover', () => amode.setColor(`#808080`))
             .on('pointerout', () => amode.setColor(`#000`))
-            .on('pointerdown', () => {this.cameras.main.fade(750, 239,239,239);
+            .on('pointerdown', () => {this.cameras.main.fade(750, 255,255,255);
                 this.time.delayedCall(750, () => this.scene.start('level1', {sped: 250, d_scale: 1,
                     score: 0, time_endless: 0, endless: true, first_attempt: true}))});
 
